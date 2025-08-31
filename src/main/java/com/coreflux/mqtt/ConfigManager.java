@@ -72,6 +72,13 @@ public class ConfigManager {
     public String getFurnaceBurnTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.furnace_burn", "server/devices/furnace/{deviceId}/events/burn")); }
     public String getFurnaceSmeltTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.furnace_smelt", "server/devices/furnace/{deviceId}/events/smelt")); }
     public String getFurnaceExtractTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.furnace_extract", "server/devices/furnace/{deviceId}/events/extract")); }
+    public String getLeverToggleTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.lever_toggle", "server/devices/lever/{deviceId}/events/toggle")); }
+    public String getButtonPressTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.button_press", "server/devices/button/{deviceId}/events/press")); }
+    public String getPressurePlateTriggerTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.pressure_plate_trigger", "server/devices/pressure_plate/{deviceId}/events/trigger")); }
+    public String getDoorToggleTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.door_toggle", "server/devices/door/{deviceId}/events/toggle")); }
+    public String getTrapdoorToggleTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.trapdoor_toggle", "server/devices/trapdoor/{deviceId}/events/toggle")); }
+    public String getPistonExtendTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.piston_extend", "server/devices/piston/{deviceId}/events/extend")); }
+    public String getPistonRetractTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.devices.piston_retract", "server/devices/piston/{deviceId}/events/retract")); }
     public String getTntExplosionTopic() { return resolveTopicTemplate(plugin.getConfig().getString("mqtt.topics.special_blocks.tnt_explosion", "server/specialblocks/tnt/{blockId}/events/explosion")); }
 
     // Event Enables
@@ -93,6 +100,12 @@ public class ConfigManager {
     
     public boolean isDeviceEventsEnabled() { return plugin.getConfig().getBoolean("events.devices.enabled", true); }
     public boolean isFurnaceEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.furnace", true); }
+    public boolean isLeverEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.lever", true); }
+    public boolean isButtonEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.button", true); }
+    public boolean isPressurePlateEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.pressure_plate", true); }
+    public boolean isDoorEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.door", true); }
+    public boolean isTrapdoorEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.trapdoor", true); }
+    public boolean isPistonEventsEnabled() { return isDeviceEventsEnabled() && plugin.getConfig().getBoolean("events.devices.piston", true); }
 
     public boolean isSpecialBlockEventsEnabled() { return plugin.getConfig().getBoolean("events.special_blocks.enabled", true); }
     public boolean isTntEventsEnabled() { return isSpecialBlockEventsEnabled() && plugin.getConfig().getBoolean("events.special_blocks.tnt", true); }

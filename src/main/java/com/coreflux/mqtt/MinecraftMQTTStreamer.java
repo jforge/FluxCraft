@@ -79,6 +79,8 @@ public class MinecraftMQTTStreamer extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ExplosionListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerConsumeListener(this), this);
+        getServer().getPluginManager().registerEvents(new InteractionListener(this), this);
+        getServer().getPluginManager().registerEvents(new PistonListener(this), this);
         if (configManager.isChatEnabled()) {
             getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         }

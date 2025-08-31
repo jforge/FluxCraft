@@ -1,11 +1,15 @@
 /usr/src/app/src/main/java/com/coreflux/mqtt/listeners/FurnaceListener.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/MinecraftMQTTStreamer.java
+/usr/src/app/src/main/java/com/coreflux/mqtt/events/PistonEvent.java
+/usr/src/app/src/main/java/com/coreflux/mqtt/events/InteractionEvent.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/listeners/PlayerActionListener.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/ConfigManager.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/listeners/WeatherListener.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/events/PlayerRespawnEvent.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/listeners/PlayerLifecycleListener.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/events/TimeEvent.java
+/usr/src/app/src/main/java/com/coreflux/mqtt/listeners/InteractionListener.java
+/usr/src/app/src/main/java/com/coreflux/mqtt/listeners/PistonListener.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/events/PlayerJoinEvent.java
 /usr/src/app/src/main/java/com.coreflux.mqtt.listeners/PlayerConsumeListener.java
 /usr/src/app/src/main/java/com/coreflux/mqtt/events/BlockEvent.java

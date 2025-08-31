@@ -53,6 +53,13 @@ mqtt:
       furnace_burn: "{devices.base}/burn"
       furnace_smelt: "{devices.base}/smelt"
       furnace_extract: "{devices.base}/extract"
+      lever_toggle: "{devices.base}/toggle"
+      button_press: "{devices.base}/press"
+      pressure_plate_trigger: "{devices.base}/trigger"
+      door_toggle: "{devices.base}/toggle"
+      trapdoor_toggle: "{devices.base}/toggle"
+      piston_extend: "{devices.base}/extend"
+      piston_retract: "{devices.base}/retract"
       crafting_station_new: "{devices.base}/new"
       crafting_station_craft: "{devices.base}/craft"
       
@@ -96,6 +103,12 @@ events:
   devices:
     enabled: true
     furnace: true
+    lever: true
+    button: true
+    pressure_plate: true
+    door: true
+    trapdoor: true
+    piston: true
     crafting_station: true
 
   special_blocks:

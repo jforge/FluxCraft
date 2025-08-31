@@ -48,5 +48,45 @@
     "kind": 2,
     "language": "lot",
     "value": "DEFINE ACTION EnemyDeathCounter\r\nON TOPIC \"server/enemies/+/+/events/death\" DO\r\n    IF(GET TOPIC \"server/enemies/+/+/status/death/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/enemies/+/+/status/death/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/enemies/+/+/status/death/counter\" WITH (GET TOPIC \"server/enemies/+/+/status/death/counter\" + 1)"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# Device Event Counters\n\nThis section handles counters for device interactions, such as levers, buttons, and pressure plates."
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION LeverToggleCounter\r\nON TOPIC \"server/devices/lever/+/events/toggle\" DO\r\n    IF(GET TOPIC \"server/devices/lever/+/status/toggle/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/lever/+/status/toggle/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/lever/+/status/toggle/counter\" WITH (GET TOPIC \"server/devices/lever/+/status/toggle/counter\" + 1)"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION ButtonPressCounter\r\nON TOPIC \"server/devices/button/+/events/press\" DO\r\n    IF(GET TOPIC \"server/devices/button/+/status/press/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/button/+/status/press/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/button/+/status/press/counter\" WITH (GET TOPIC \"server/devices/button/+/status/press/counter\" + 1)"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION PressurePlateTriggerCounter\r\nON TOPIC \"server/devices/pressure_plate/+/events/trigger\" DO\r\n    IF(GET TOPIC \"server/devices/pressure_plate/+/status/trigger/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/pressure_plate/+/status/trigger/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/pressure_plate/+/status/trigger/counter\" WITH (GET TOPIC \"server/devices/pressure_plate/+/status/trigger/counter\" + 1)"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION DoorToggleCounter\r\nON TOPIC \"server/devices/door/+/events/toggle\" DO\r\n    IF(GET TOPIC \"server/devices/door/+/status/toggle/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/door/+/status/toggle/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/door/+/status/toggle/counter\" WITH (GET TOPIC \"server/devices/door/+/status/toggle/counter\" + 1)"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION TrapdoorToggleCounter\r\nON TOPIC \"server/devices/trapdoor/+/events/toggle\" DO\r\n    IF(GET TOPIC \"server/devices/trapdoor/+/status/toggle/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/trapdoor/+/status/toggle/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/trapdoor/+/status/toggle/counter\" WITH (GET TOPIC \"server/devices/trapdoor/+/status/toggle/counter\" + 1)"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION PistonExtendCounter\r\nON TOPIC \"server/devices/piston/+/events/extend\" DO\r\n    IF(GET TOPIC \"server/devices/piston/+/status/extend/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/piston/+/status/extend/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/piston/+/status/extend/counter\" WITH (GET TOPIC \"server/devices/piston/+/status/extend/counter\" + 1)"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION PistonRetractCounter\r\nON TOPIC \"server/devices/piston/+/events/retract\" DO\r\n    IF(GET TOPIC \"server/devices/piston/+/status/retract/counter\" EQUAL EMPTY) THEN\r\n        PUBLISH TOPIC \"server/devices/piston/+/status/retract/counter\" WITH 1\r\n    ELSE\r\n        PUBLISH TOPIC \"server/devices/piston/+/status/retract/counter\" WITH (GET TOPIC \"server/devices/piston/+/status/retract/counter\" + 1)"
   }
 ]

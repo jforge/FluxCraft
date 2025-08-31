@@ -3,14 +3,10 @@ package com.coreflux.mqtt.listeners;
 import com.coreflux.mqtt.MinecraftMQTTStreamer;
 import com.coreflux.mqtt.ConfigManager;
 import com.coreflux.mqtt.events.PlayerDeathEvent;
-import com.coreflux.mqtt.events.PlayerJoinEvent;
-import com.coreflux.mqtt.events.PlayerQuitEvent;
 import com.coreflux.mqtt.events.PlayerRespawnEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +63,7 @@ public class PlayerLifecycleListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        PlayerJoinEvent payload = new PlayerJoinEvent(player.getLocation());
+        com.coreflux.mqtt.events.PlayerJoinEvent payload = new com.coreflux.mqtt.events.PlayerJoinEvent(player.getLocation());
 
         Map<String, String> placeholders = new HashMap<>();
         placeholders.put("playerName", player.getName());
@@ -82,7 +78,7 @@ public class PlayerLifecycleListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        PlayerQuitEvent payload = new PlayerQuitEvent(player.getLocation());
+        com.coreflux.mqtt.events.PlayerQuitEvent payload = new com.coreflux.mqtt.events.PlayerQuitEvent(player.getLocation());
 
         Map<String, String> placeholders = new HashMap<>();
         placeholders.put("playerName", player.getName());

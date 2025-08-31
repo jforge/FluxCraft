@@ -112,19 +112,33 @@ new Vue({
         updateDevice(type, id, path, data) {
              const fullId = `${type}-${id}`;
             if (!this.devices[fullId]) {
-                this.$set(this.devices, fullId, { type: type, id: id, events: {}, status: 'idle' });
+                this.$set(this.devices, fullId, { type: type, id: id, events: {}, state: 'unknown', status: {} });
             }
-            const eventType = path.split('/')[1];
-
-            if (eventType === 'burn') {
-                this.devices[fullId].status = 'burning';
-            } else if (eventType === 'smelt') {
-                this.devices[fullId].status = 'smelting';
-            } else if (eventType === 'extract') {
-                 this.devices[fullId].status = 'idle';
+            if(path.startsWith('status')) {
+                const [,metric,sub] = path.split('/');
+                if(!this.devices[fullId].status[metric]) {
+                    this.$set(this.devices[fullId].status, metric, {});
+                }
+                this.$set(this.devices[fullId].status[metric], sub, data);
+            } else {
+                const eventType = path.split('/')[1];
+    
+                if (eventType === 'burn') {
+                    this.devices[fullId].state = 'burning';
+                } else if (eventType === 'smelt') {
+                    this.devices[fullId].state = 'smelting';
+                } else if (eventType === 'extract') {
+                     this.devices[fullId].state = 'idle';
+                } else if (['toggle', 'press', 'trigger'].includes(eventType)) {
+                    this.devices[fullId].state = data.powered ? 'powered' : 'unpowered';
+                } else if (eventType === 'extend') {
+                    this.devices[fullId].state = 'extended';
+                } else if (eventType === 'retract') {
+                    this.devices[fullId].state = 'retracted';
+                }
+                
+                this.$set(this.devices[fullId].events, eventType, data);
             }
-            
-            this.$set(this.devices[fullId].events, eventType, data);
         },
         updateEnemy(type, id, path, data) {
             const fullId = `${type}-${id}`;

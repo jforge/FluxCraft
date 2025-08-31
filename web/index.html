@@ -76,10 +76,18 @@
             <!-- Devices Page -->
             <div v-if="currentView === 'devices'" class="view-content">
                 <div class="card-grid">
-                     <div class="card device-card" v-for="(device, id) in devices" :key="id" :class="device.status">
+                     <div class="card device-card" v-for="(device, id) in devices" :key="id" :class="device.state">
                         <h3>{{ device.type }} <span class="status-dot"></span></h3>
                         <p><strong>ID:</strong> <code>{{ device.id }}</code></p>
-                        <p><strong>Status:</strong> {{ device.status }}</p>
+                        <p><strong>State:</strong> {{ device.state }}</p>
+                        <div class="device-stats" v-if="Object.keys(device.status).length > 0">
+                            <h4>Stats:</h4>
+                            <ul>
+                                <li v-for="(value, key) in device.status">
+                                    <strong>{{ key }}:</strong> {{ value.counter }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

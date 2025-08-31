@@ -189,6 +189,8 @@ pre {
 .device-card.burning .status-dot { background-color: #f04747; }
 .device-card.smelting .status-dot { background-color: #faa61a; }
 .device-card.idle .status-dot { background-color: var(--success-color); }
+.device-card.powered .status-dot { background-color: var(--success-color); }
+.device-card.unpowered .status-dot { background-color: var(--text-secondary); }
 
 
 /* Enemy Card Status */
