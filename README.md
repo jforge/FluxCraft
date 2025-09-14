@@ -138,3 +138,12 @@ After setup, you can open `main.lotnb` and execute the code cells to deploy the 
 
 ## About Coreflux
 This project is built on the [Coreflux](https://coreflux.org) platform, which provides the MQTT broker, data processing capabilities, and development tools used in this solution. For more details, check out the official [Coreflux Documentation](https://docs.coreflux.org).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+### Trademarks and Disclaimers
+
+- **Coreflux**: "Coreflux" is a trademark of Coreflux Portugal SA.
+- **Minecraft**: This project is not affiliated with Mojang or Microsoft. "Minecraft" is a trademark of Mojang Synergies AB.
