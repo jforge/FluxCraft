@@ -21,7 +21,7 @@ services:
 
   # Paper Minecraft Server
   paper-server:
-    image: marctv/minecraft-papermc-server:latest
+    image: marctv/minecraft-papermc-server:1.21.10
     container_name: paper-minecraft
     ports:
       - "25565:25565"    # Minecraft server port
