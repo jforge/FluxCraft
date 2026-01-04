@@ -1,5 +1,5 @@
 @echo off
-echo Minecraft MQTT Streamer - Building with Docker
+echo Minecraft FluxCraft - Building with Docker
 echo =============================================
 
 echo.
@@ -22,11 +22,11 @@ echo.
 echo =============================================
 echo Plugin built successfully!
 echo.
-echo The JAR file is now in: target/minecraft-mqtt-streamer-1.0.0.jar
+echo The JAR file is now in: target/fluxcraft-1.0.0.jar
 echo.
 echo Copying plugin to plugins folder...
 if not exist plugins mkdir plugins
-copy target\minecraft-mqtt-streamer-1.0.0.jar plugins\ /Y
+copy target\fluxcraft-1.0.0.jar plugins\ /Y
 if %errorlevel% equ 0 (
     echo ✅ Plugin copied successfully to plugins folder!
 ) else (

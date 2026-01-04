@@ -1,13 +1,13 @@
-name: MinecraftMQTTStreamer
+name: FluxCraft
 version: '1.0.0'
-main: com.coreflux.mqtt.MinecraftMQTTStreamer
+main: io.eol.fluxcraft.FluxCraft
 api-version: '1.21'
-authors: [Coreflux]
-description: Streams Minecraft events to MQTT broker
-website: https://coreflux.org
+authors: [Coreflux, jforge]
+description: Streams Minecraft events to an MQTT broker
+website: https://eol.io
 commands:
   mqtt:
-    description: MQTT Streamer commands
+    description: FluxCraft commands
     usage: /<command> [reload|status|test]
     permission: mqtt.admin
 permissions:

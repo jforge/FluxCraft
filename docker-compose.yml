@@ -1,13 +1,11 @@
-version: '3.8'
-
 services:
   # Coreflux MQTT Broker
   coreflux-mqtt:
     image: coreflux/coreflux-mqtt-broker:latest
     container_name: coreflux-mqtt
     ports:
-      - "1883:1883"      # MQTT
-      - "9001:5000"      # WebSocket
+      - "${MQTT_PORT:-1883}:1883"
+      - "${WEBSOCKET_PORT:-9001}:5000"
     environment:
       - MQTT_PORT=1883
       - WS_PORT=5000
@@ -53,15 +51,6 @@ services:
       - minecraft-network
     profiles:
       - test
-
-  web-dashboard:
-    build:
-      context: .
-      dockerfile: Dockerfile.web
-    ports:
-      - "8080:80"
-    networks:
-      - minecraft-network
 
 volumes:
   mqtt_data:
