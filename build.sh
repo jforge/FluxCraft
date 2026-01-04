@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
-echo "Minecraft MQTT Streamer - Building with Docker"
+echo "Minecraft FluxCraft - Building with Docker"
 echo "============================================="
 
 echo ""
@@ -19,7 +19,7 @@ fi
 echo ""
 echo "Copying plugin to plugins folder..."
 mkdir -p plugins
-cp target/minecraft-mqtt-streamer-1.0.0.jar plugins/
+cp target/fluxcraft-1.0.0.jar plugins/
 
 echo ""
 echo "============================================="

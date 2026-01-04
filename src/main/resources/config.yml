@@ -1,11 +1,11 @@
-# Minecraft MQTT Streamer UNS Configuration
+# FluxCraft UNS Configuration
 
 mqtt:
   broker:
     uri: "tcp://coreflux-mqtt:1883"
     username: "root"
     password: "coreflux"
-    client-id: "minecraft-streamer"
+    client-id: "fluxcraft"
     keep-alive: 60
     connection-timeout: 30
     automatic-reconnect: true

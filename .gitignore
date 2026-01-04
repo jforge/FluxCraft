@@ -1,0 +1,7 @@
+.idea
+.vscode
+target
+plugins
+dependency-reduced-pom.xml
+server-data
+*.iml

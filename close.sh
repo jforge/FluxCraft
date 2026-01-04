@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
-echo "Minecraft MQTT Streamer - Stopping Environment"
+echo "Minecraft FluxCraft - Stopping Environment"
 echo "============================================="
 echo ""
 echo "Stopping Docker services..."
