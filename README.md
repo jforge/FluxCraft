@@ -9,7 +9,7 @@ including player actions, enemy engagements, and world changes, and publishes th
 
 ## Usage
 
-Download the [latest release](https://github.com/jforge/FluxCraft/releases/latest) and place it in your `plugins` folder.
+Download the [latest release JAR file](https://github.com/jforge/FluxCraft/releases/latest) and place it in your `plugins` folder.
 
 Restart your server to enable the plugin.
 A new `config.yml` file will be created in the plugin's folder `../plugins/FluxCraft`.
