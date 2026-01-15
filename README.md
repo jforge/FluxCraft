@@ -44,7 +44,8 @@ mqtt:
       disableCertificateValidation: true
 ```
 
-> [!WARNING]️
+> ⚠️ **WARNING**
+>
 > Disabling certificate validation makes the connection vulnerable to Man-in-the-Middle (MITM) attacks. Only use this for internal testing or with trusted brokers.
 
 
