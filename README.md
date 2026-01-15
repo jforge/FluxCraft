@@ -9,7 +9,7 @@ including player actions, enemy engagements, and world changes, and publishes th
 
 ## Usage
 
-Download the [latest release](https://github.com/jforge/FluxCraft/releases/latest) and place it in your `plugins` folder.
+Download the [latest release JAR file](https://github.com/jforge/FluxCraft/releases/latest) and place it in your `plugins` folder.
 
 Restart your server to enable the plugin.
 A new `config.yml` file will be created in the plugin's folder `../plugins/FluxCraft`.
@@ -20,9 +20,49 @@ Adjust the configuration as needed and restart the server to apply the changes.
 You need at least proper MQTT broker settings to receive the events.
 Any broker URI reachable by the Minecraft server should work.
 The plugin uses MQTT version 5 by default and supports MQTT version 3.1.1 as well.
-Right now, a TLS connection is not supported, but it's planned for the future.
+
+### TLS / Secure Connections
+FluxCraft supports secure connections via TLS. The plugin automatically detects whether to use a secure connection based on the URI scheme provided in the configuration:
+
+- **Unencrypted**: Use `tcp://` (e.g., `tcp://localhost:1883`)
+- **Encrypted (TLS)**: Use `ssl://` or `tls://` (e.g., `ssl://broker.example.com:8883`)
+
+**Note on Ports**:
+- If no port is specified with `tcp://`, it defaults to **1883**.
+- If no port is specified with `ssl://` or `tls://`, it defaults to **8883**.
+- Custom ports are supported (e.g., `ssl://mybroker:8884`).
+
+**Advanced Security Settings**:
+
+The plugin uses the JVM's default trust store to verify the broker's certificate, which is sufficient for brokers using certificates from well-known authorities (like Let's Encrypt).
+
+For development or environments with self-signed certificates, you can disable certificate validation:
+```yaml
+mqtt:
+  broker:
+    tls:
+      disableCertificateValidation: true
+```
+
+> ⚠️ **WARNING**
+>
+> Disabling certificate validation makes the connection vulnerable to Man-in-the-Middle (MITM) attacks. Only use this for internal testing or with trusted brokers.
+
+
+### Multiple Servers & Unique Client IDs
+If you are running multiple Minecraft servers (e.g., a BungeeCord/Velocity network) connecting to the same MQTT broker, each connection must have a unique **Client ID**. 
+
+FluxCraft handles this automatically using a two-tier strategy:
+1. **Configurable Prefix**: Set `mqtt.broker.client-id` in your `config.yml` to identify the server (e.g., `survival-01`).
+2. **UUID Suffix**: The plugin appends a unique UUID to every connection.
+
+**Benefits of this approach:**
+- **No Connection Flapping**: MQTT brokers disconnect existing clients if a new one connects with the same ID. The UUID suffix prevents servers from accidentally "kicking" each other off.
+- **Traceability**: You can easily identify which specific server instance and connection type (Publisher vs. Subscriber) is active in your broker's logs.
+- **Scalability**: You can spin up multiple instances of the same server template without worrying about ID collisions.
 
 ### UNS Topic Templates
+
 The plugin uses a set of predefined topic templates to generate the actual MQTT topics.
 You can customize the template strings to fit your needs.
 
@@ -40,14 +80,16 @@ The configuration file also includes experimental features that are not yet full
 This includes the `chat` and `commands` events.
 
 ## Example configuration
-```
+```yaml
 # FluxCraft UNS Configuration
 mqtt:
   broker:
-    uri: "tcp://broker.example.org:1883"
+    uri: "ssl://broker.example.org:8883"
     username: "server"
     password: "your-secret-password"
-    client-id: "minecraft-streamer"
+    client-id: "fluxcraft"
+    tls:
+      disableCertificateValidation: false
     keep-alive: 60
     connection-timeout: 30
     automatic-reconnect: true

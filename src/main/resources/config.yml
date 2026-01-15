@@ -6,6 +6,8 @@ mqtt:
     username: "root"
     password: "coreflux"
     client-id: "fluxcraft"
+    tls:
+      disableCertificateValidation: false
     keep-alive: 60
     connection-timeout: 30
     automatic-reconnect: true

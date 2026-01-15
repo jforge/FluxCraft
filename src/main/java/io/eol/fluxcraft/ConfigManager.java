@@ -37,6 +37,10 @@ public class ConfigManager {
         return plugin.getConfig().getString("mqtt.broker.client-id", "fluxcraft");
     }
 
+    public boolean isDisableCertificateValidation() {
+        return plugin.getConfig().getBoolean("mqtt.broker.tls.disableCertificateValidation", false);
+    }
+
     public int getQos() {
         return plugin.getConfig().getInt("mqtt.qos", 1);
     }
