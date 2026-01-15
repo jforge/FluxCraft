@@ -19,7 +19,7 @@ fi
 echo ""
 echo "Copying plugin to plugins folder..."
 mkdir -p plugins
-cp target/fluxcraft-1.0.0.jar plugins/
+cp target/fluxcraft-*.jar plugins/
 
 echo ""
 echo "============================================="

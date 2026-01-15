@@ -5,15 +5,13 @@ import io.eol.fluxcraft.FluxCraft;
 import io.eol.fluxcraft.events.ChatMessageEvent;
 import com.hivemq.client.mqtt.MqttClientState;
 import org.bukkit.Bukkit;
-import com.hivemq.client.mqtt.MqttClient;
 import com.hivemq.client.mqtt.datatypes.MqttQos;
 import com.hivemq.client.mqtt.mqtt5.Mqtt5Client;
 import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5Publish;
 
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class CommandSubscriber {
     private final FluxCraft plugin;
@@ -28,24 +26,9 @@ public class CommandSubscriber {
 
     private void connect() {
         try {
-            String clientId = config.getClientId() + "-subscriber-" + UUID.randomUUID().toString().substring(0, 8);
-            URI brokerUri = URI.create(config.getBrokerUri());
-
-            // Let the client auto-negotiate (tries MQTT 5, falls back to 3.1.1)
-            mqttClient = MqttClient.builder()
-                    .useMqttVersion5()
-                    .identifier(clientId)
-                    .serverHost(brokerUri.getHost())
-                    .serverPort(brokerUri.getPort())
-                    .simpleAuth()
-                    .username(config.getBrokerUsername())
-                    .password(config.getBrokerPassword().getBytes())
-                    .applySimpleAuth()
-                    .automaticReconnect()
-                    .initialDelay(1, TimeUnit.SECONDS)
-                    .applyAutomaticReconnect()
+            mqttClient = MqttClientFactory.createBaseBuilder(config, "-subscriber")
                     .addConnectedListener(context -> {
-                        plugin.getLogger().info("Subscriber connected to MQTT broker. Subscribing to command topic...");
+                        plugin.getLogger().info("Subscriber connected. Subscribing to topics...");
                         subscribeToTopics();
                     })
                     .addDisconnectedListener(context -> {
@@ -68,7 +51,7 @@ public class CommandSubscriber {
         // Subscribe to Command Topic
         mqttClient.toAsync().subscribeWith()
                 .topicFilter(config.getCommandExecuteTopic())
-                .qos(MqttQos.fromCode(config.getQos()))
+                .qos(Objects.requireNonNull(MqttQos.fromCode(config.getQos())))
                 .callback(this::handleMessage)
                 .send();
 
@@ -76,7 +59,7 @@ public class CommandSubscriber {
         if (config.isChatEnabled()) {
             mqttClient.toAsync().subscribeWith()
                     .topicFilter(config.getChatSendTopic())
-                    .qos(MqttQos.fromCode(config.getQos()))
+                    .qos(Objects.requireNonNull(MqttQos.fromCode(config.getQos())))
                     .callback(this::handleMessage)
                     .send();
         }

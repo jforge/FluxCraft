@@ -23,10 +23,10 @@ Write-Host ""
 Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host "Plugin built successfully!" -ForegroundColor Green
 Write-Host ""
-Write-Host "The JAR file is now in: target/fluxcraft-1.0.0.jar" -ForegroundColor White
+Write-Host "The JAR file is now in: target/fluxcraft-<version>.jar" -ForegroundColor White
 Write-Host ""
 Write-Host "Copying plugin to plugins folder..." -ForegroundColor Yellow
-Copy-Item target\fluxcraft-1.0.0.jar plugins\ -Force
+Copy-Item target\fluxcraft-*.jar plugins\ -Force
 if ($LASTEXITCODE -eq 0) {
     Write-Host "✅ Plugin copied successfully to plugins folder!" -ForegroundColor Green
 } else {
