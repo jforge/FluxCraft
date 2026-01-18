@@ -23,6 +23,16 @@ public class MqttClientFactory {
             port = isSsl ? 8883 : 1883;
         }
 
+        // Warn about common scheme/port mismatches to help catch configuration errors.
+        if (isSsl && port == 1883) {
+            System.err.println("Warning: MQTT broker URI '" + config.getBrokerUri()
+                    + "' uses a TLS/SSL scheme with the default non-TLS port 1883. "
+                    + "This may indicate a configuration error.");
+        } else if (!isSsl && port == 8883) {
+            System.err.println("Warning: MQTT broker URI '" + config.getBrokerUri()
+                    + "' uses a non-TLS scheme with the default TLS/SSL port 8883. "
+                    + "This may indicate a configuration error.");
+        }
         Mqtt5ClientBuilder builder = MqttClient.builder()
                 .useMqttVersion5()
                 .identifier(clientId)
