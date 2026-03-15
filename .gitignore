@@ -5,3 +5,6 @@ plugins
 dependency-reduced-pom.xml
 server-data
 *.iml
+*.log
+*token*
+demo-processing
